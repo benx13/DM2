@@ -1,11 +1,9 @@
 import streamlit as st  
-import os 
 
 st.set_page_config(layout="wide")
 
 st.title('Dataset')
 
-st.write(os.getcwd())
 
 # st.subheader('Conclusion (derived from visualization)')
 
