@@ -3,18 +3,6 @@ import os
 
 class DF():
     def __init__(self, path='dataset2.csv', remove = False):
-        print()
-        print()
-        print()
-        print('333333333333333333333')
-        print()
-        print()
-        print(os.listdir('pages'))
-        print()
-        print('33333333333333333333')
-        print()
-        print()
-
         self.df = pd.read_csv(path)
         self.data = {}
         for att in self.df:
