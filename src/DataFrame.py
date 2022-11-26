@@ -3,7 +3,7 @@ import os
 
 class DF():
     def __init__(self, path='dataset2.csv', remove = False):
-        self.df = pd.read_csv(os.path.join('.', path))
+        self.df = pd.read_csv(os.path.join('..', path))
         self.data = {}
         for att in self.df:
             if remove:
