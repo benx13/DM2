@@ -2,7 +2,7 @@ import pandas as pd
 import os
 
 class DF():
-    def __init__(self, path='dataset2.csv', remove = False):
+    def __init__(self, path='src/dataset2.csv', remove = False):
         self.df = pd.read_csv(path)
         self.data = {}
         for att in self.df:

@@ -5,7 +5,7 @@ st.set_page_config(layout="wide")
 
 st.title('Dataset')
 
-st.write(os.listdir())
+st.write(os.getcwd())
 
 # st.subheader('Conclusion (derived from visualization)')
 
