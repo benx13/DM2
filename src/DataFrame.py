@@ -3,7 +3,18 @@ import os
 
 class DF():
     def __init__(self, path='dataset2.csv', remove = False):
+        print()
+        print()
+        print()
+        print()
+        print()
+        print()
         print(os.listdir('.'))
+        print()
+        print()
+        print()
+        print()
+
         self.df = pd.read_csv(path)
         self.data = {}
         for att in self.df:
