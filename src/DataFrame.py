@@ -1,9 +1,11 @@
 import pandas as pd
-import os
 
 class DF():
-    def __init__(self, path='src/dataset2.csv', remove = False):
-        self.df = pd.read_csv(path)
+    def __init__(self, path='dataset2.csv', remove = False):
+        try:
+            self.df = pd.read_csv(path)
+        except:
+            self.df = pd.read_csv('src/'+path)
         self.data = {}
         for att in self.df:
             if remove:

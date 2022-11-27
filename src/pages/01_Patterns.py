@@ -9,14 +9,14 @@ def get_data(df, clean=False, encode=True):
     df.missing_values_imputation()
     if encode:
         df.encode_str()
-    if clean:
+    if clean: 
         for att in list(df.data.keys()):
             df.outliers_median_imputation(att)
         for att in list(df.data.keys()):
             df.normalize_minmax(att)
     if encode:
         return [[df.encode_dict[att][df.data[att][i]] for att in list(df.data.keys())] for i in range(len(df.data.get('Watcher')))]
-    return df
+    return df 
 
 def get_transactions(df):
     transactions = {}
@@ -86,16 +86,20 @@ def get_rules(transactions, out, min_support=False, min_conf=False):
     return rules  
 
 def get_pred(watcher, transactions, rules):
-    change = True
     interests = transactions[watcher]
+    return get_pred_by_cats(interests, rules)
+
+def get_pred_by_cats(categories, rules):
+    change = True
+    interests = categories
     while(change):
         change = False
         for rule in rules:
-            if set(rule[0]).issubset(set(interests)):
-                if not set(rule[1]).issubset(set(interests)):
-                    interests = set(interests) | set(rule[1])
+            if set(rule[0]).issubset(set(categories)):
+                if not set(rule[1]).issubset(set(categories)):
+                    categories = set(categories) | set(rule[1])
                     change = True
-    return [i for i in interests if i not in transactions[watcher]]
+    return [i for i in categories if i not in interests]
 
 st.sidebar.markdown('Frequent items')
 min_suport = st.sidebar.slider('Min support', 0.05, 1.0, 0.4)
@@ -132,7 +136,6 @@ with col1:
         st.write('No association rules')
 
 with col2:
-    #st.title('Recommendations')
     st.title('')
     st.title('')
     df = DF(remove=['definition', 'videoCategoryId'])
@@ -146,3 +149,14 @@ with col2:
     st.write(transactions[watcher])
     st.markdown('Predictions')
     st.write(get_pred(watcher, transactions, rules))
+
+df = DF(remove=['definition', 'videoCategoryId'])
+data = get_data(df, encode=False)
+categories = st.multiselect(
+    'What are your favorite colors',
+    data.unique('videoCategoryLabel'),
+    [])
+
+st.markdown('Predictions')
+st.write(get_pred_by_cats(categories, rules))
+# pull add commit push
