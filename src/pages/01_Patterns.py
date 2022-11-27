@@ -153,10 +153,9 @@ with col2:
 df = DF(remove=['definition', 'videoCategoryId'])
 data = get_data(df, encode=False)
 categories = st.multiselect(
-    'What are your favorite colors',
+    'Choose categories',
     data.unique('videoCategoryLabel'),
     [])
 
 st.markdown('Predictions')
 st.write(get_pred_by_cats(categories, rules))
-# pull add commit push
